@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "904631524025",
+    "project_id": "movie-mate-b4717",
+    "storage_bucket": "movie-mate-b4717.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904631524025:android:c1e9de18a04e57608d5968",
+        "android_client_info": {
+          "package_name": "com.example.imdbclone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvLDFOyK_9htCkJCeS-K0rruOg3NQM0yw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
