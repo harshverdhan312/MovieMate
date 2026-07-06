@@ -60,10 +60,7 @@ class _SignupPageState extends State<SignupPage> {
       String imageUrl = "";
 
       if (selectedImage != null) {
-        print(selectedImage?.path);
         imageUrl = await cloudinary.uploadImage(selectedImage!) ?? "";
-        print(imageUrl);
-        print("image LOaded");
       }
 
       await FirebaseFirestore.instance.collection('users').doc(user!.uid).set({
@@ -73,7 +70,6 @@ class _SignupPageState extends State<SignupPage> {
         'profileImage': imageUrl,
         'watchList': [],
       });
-      print("data added");
     } catch (e) {
       debugPrint("ERROR: $e");
     }

@@ -12,9 +12,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   Future<void> logout() async {
-    print("Pressed");
     await FirebaseAuth.instance.signOut();
-    print("loggedOut");
   }
 
   @override

@@ -26,7 +26,6 @@ class CloudinaryService {
       final responseData = await response.stream.bytesToString();
 
       final data = jsonDecode(responseData);
-      print(data['secure_url']);
       return data["secure_url"];
     }
 

@@ -17,6 +17,7 @@ class MovieDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
     final title = movie['title'] ?? movie['name'];
+    final releaseDate = movie['release_date'] ?? movie['first_air_date'] ?? '';
     return Scaffold(
       backgroundColor: Colors.black,
       body: GradientBackground(
@@ -65,12 +66,7 @@ class MovieDetailPage extends StatelessWidget {
                       ),
 
                       InfoChips(
-                        information:
-                            (movie['release_date'] ??
-                                    movie['first_air_date'] ??
-                                    '')
-                                .toString()
-                                .substring(0, 4),
+                        information: (releaseDate).toString().substring(0, 4),
                       ),
                     ],
                   ),
@@ -110,19 +106,36 @@ class MovieDetailPage extends StatelessWidget {
                         height: 45,
                         child: ElevatedButton(
                           onPressed: isAdded
-                              ? null
+                              ? () async {
+                                  await FirebaseFirestore.instance
+                                      .collection('users')
+                                      .doc(user?.uid)
+                                      .update({
+                                        'watchList': FieldValue.arrayRemove([
+                                          {
+                                            'id': movie['id'],
+                                            'poster_path': movie['poster_path'],
+                                          },
+                                        ]),
+                                      });
+                                }
                               : () async {
                                   await FirebaseFirestore.instance
                                       .collection('users')
                                       .doc(user?.uid)
                                       .update({
                                         'watchList': FieldValue.arrayUnion([
-                                          movie,
+                                          {
+                                            'id': movie['id'],
+                                            'poster_path': movie['poster_path'],
+                                          },
                                         ]),
                                       });
                                 },
                           child: Text(
-                            isAdded ? "Added to Watchlist" : "Add to Watchlist",
+                            isAdded
+                                ? "Remove from Watchlist"
+                                : "Add to Watchlist",
                           ),
                         ),
                       );

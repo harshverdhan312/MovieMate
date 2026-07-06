@@ -1,4 +1,3 @@
-// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:imdbclone/widgets/forgot_password_dialog_box.dart';
@@ -20,7 +19,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-    debugPrint("LoginPage disposed");
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
@@ -32,8 +30,6 @@ class _LoginPageState extends State<LoginPage> {
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
-
-      debugPrint("LOGIN FINISHED");
     } catch (e) {
       debugPrint(e.toString());
     }
